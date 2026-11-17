@@ -1,27 +1,69 @@
-# Site
+# Seiva Mística
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.11.
+> Encontre sua essência. Cultive boas energias.
 
-## Development server
+Site de e-commerce de produtos esotéricos naturais — cristais, tarô e oráculos, ervas aromáticas e banhos. Desenvolvido como projeto integrador do curso, com front-end em Angular e uma API simulada com `json-server`.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+---
 
-## Code scaffolding
+## Sobre o projeto
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+A Seiva Mística nasceu da vontade de trazer mais significado aos pequenos momentos do dia. O site reúne produtos naturais selecionados para quem deseja criar seus próprios rituais de autocuidado, com uma interface calma, editorial e inspirada na natureza.
 
-## Build
+O projeto cobre o fluxo completo de uma loja: navegação por categorias, catálogo com filtros, carrinho com controle de quantidade, finalização de pedido, histórico do cliente e uma área administrativa com relatórios de estoque e vendas.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+---
 
-## Running unit tests
+## Funcionalidades
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+**Área do visitante**
 
-## Running end-to-end tests
+- Home com hero e navegação por categorias
+- Catálogo completo com filtro por categoria
+- Página dedicada por categoria
+- Carrinho com adicionar, aumentar, diminuir, remover e limpar
+- Finalização de pedido com geração de código único
+- Persistência do carrinho no navegador entre sessões
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+**Área do cliente**
 
-## Further help
+- Cadastro com validação de CPF
+- Login e logout
+- Histórico de pedidos filtrado por usuário
+- Cabeçalho que reflete o estado de autenticação
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+**Área administrativa** (visível apenas para administradores)
+
+- Cadastro de novos produtos
+- Edição e exclusão de produtos
+- Relatório com KPIs: total de produtos, categorias, valor em catálogo, pedidos, receita e usuários
+- Tabelas detalhadas de produtos, pedidos e usuários
+
+---
+
+## Tecnologias
+
+| Camada | Ferramenta |
+|---|---|
+| Framework | Angular 17+ (componentes standalone) |
+| Linguagem | TypeScript |
+| Estilo | CSS puro com design system em variáveis |
+| Estado | RxJS (`BehaviorSubject`) |
+| HTTP | `HttpClient` com proxy para a API |
+| API simulada | `json-server` |
+| Tipografia | Cormorant Garamond e Jost (Google Fonts) |
+
+---
+
+## Pré-requisitos
+
+- Node.js 18 ou superior
+- npm 9 ou superior
+- Angular CLI (`npm install -g @angular/cli`)
+
+Confira as versões:
+
+```bash
+node -v
+npm -v
+ng version
