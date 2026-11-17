@@ -9,23 +9,31 @@
       </p>
     </div>
 
-    <div class="footer-links">
+    <div>
       <h5>Navegação</h5>
-      <a routerLink="/home">Página Principal</a>
-      <a routerLink="/categoria/Cristais">Cristais</a>
-      <a routerLink="/categoria/Tarô e Oráculos">Tarô e Oráculos</a>
-      <a routerLink="/categoria/Ervas Aromáticas e Banhos">Ervas Aromáticas e Banhos</a>
+      <div class="footer-links">
+        <a routerLink="/home">Página Principal</a>
+        <a [routerLink]="['/categoria', 'Cristais']">Cristais</a>
+        <a [routerLink]="['/categoria', 'Tarô e Oráculos']">Tarô e Oráculos</a>
+        <a [routerLink]="['/categoria', 'Ervas Aromáticas e Banhos']">
+          Ervas Aromáticas e Banhos
+        </a>
+      </div>
     </div>
 
-    <div class="footer-links">
+    <div>
       <h5>Atendimento</h5>
-      <a routerLink="/sobre">Sobre Nós</a>
-      <a routerLink="/carrinho">Carrinho</a>
-      <a routerLink="/admin">Administração</a>
-      <a routerLink="/relatorio">Relatório</a>
+      <div class="footer-links">
+        <a routerLink="/sobre">Sobre Nós</a>
+        <a routerLink="/carrinho">Carrinho</a>
+        <a routerLink="/admin">Administração</a>
+        <a routerLink="/relatorio">Relatório</a>
+      </div>
     </div>
 
   </div>
 
-  <div class="footer-bottom">© 2026 Seiva Mística — Trabalho PW1</div>
+  <div class="footer-bottom">
+    © {{ ano }} Seiva Mística — Projeto Integrador (PI)
+  </div>
 </footer>
