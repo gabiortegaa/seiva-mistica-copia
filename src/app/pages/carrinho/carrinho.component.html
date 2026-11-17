@@ -1,0 +1,89 @@
+<section class="carrinho-page">
+  <div class="catalogo-card">
+
+    <div class="catalogo-head">
+      <span class="logo-mark">
+        <img src="assets/logo.png" alt="Seiva Mística" />
+      </span>
+      <h2>Meu Carrinho</h2>
+      <div class="divider"></div>
+    </div>
+
+    <p class="status erro" *ngIf="erro">{{ erro }}</p>
+
+    <p class="carrinho-vazio" *ngIf="itens.length === 0">
+      Seu carrinho está vazio.
+    </p>
+
+    <ng-container *ngIf="itens.length > 0">
+      <div class="tabela-wrap">
+        <table class="tabela-carrinho">
+          <thead>
+            <tr>
+              <th>Produto</th>
+              <th>Quantidade</th>
+              <th>Valor</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let item of itens">
+              <td>
+                <div class="carrinho-produto">
+                  <img [src]="item.produto.imagem" [alt]="item.produto.nome" />
+                  <span>{{ item.produto.nome }}</span>
+                </div>
+              </td>
+
+              <td>
+                <div class="qtd">
+                  <button type="button" (click)="diminuir(item)"
+                          [attr.aria-label]="'Diminuir ' + item.produto.nome">−</button>
+                  <span>{{ item.quantidade }}</span>
+                  <button type="button" (click)="aumentar(item)"
+                          [attr.aria-label]="'Aumentar ' + item.produto.nome">+</button>
+                </div>
+              </td>
+
+              <td>R$ {{ item.produto.preco.toFixed(2) }}</td>
+
+              <td>R$ {{ (item.produto.preco * item.quantidade).toFixed(2) }}</td>
+            </tr>
+          </tbody>
+
+          <tfoot>
+            <tr>
+              <td colspan="3" class="rotulo">Frete</td>
+              <td class="valor-frete">{{ frete > 0 ? ('R$ ' + frete.toFixed(2)) : 'A calcular' }}</td>
+            </tr>
+            <tr>
+              <td colspan="3" class="rotulo">Total</td>
+              <td class="valor-total">R$ {{ total.toFixed(2) }}</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <div class="carrinho-acoes">
+        <button type="button" class="btn-excluir" (click)="limpar()">
+          Limpar Carrinho
+        </button>
+        <button type="button" class="btn-finalizar"
+                (click)="fecharPedido()" [disabled]="carregando">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 12h14" />
+            <path d="M13 6l6 6-6 6" />
+          </svg>
+          {{ carregando ? 'Registrando...' : 'Fechar Pedido' }}
+        </button>
+      </div>
+    </ng-container>
+
+    <div class="centro">
+      <a routerLink="/catalogo" class="btn-secundario">← Continuar comprando</a>
+    </div>
+
+  </div>
+</section>

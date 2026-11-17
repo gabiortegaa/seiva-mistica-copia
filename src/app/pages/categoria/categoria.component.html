@@ -1,0 +1,43 @@
+<section class="catalogo-page">
+  <a routerLink="/home" class="voltar">← Voltar para a home</a>
+
+  <div class="catalogo-card">
+
+    <div class="catalogo-head">
+      <span class="logo-mark">
+        <img src="assets/logo.png" alt="Seiva Mística" />
+      </span>
+      <h2>{{ nome }}</h2>
+      <div class="divider"></div>
+      <p class="admin-sub">{{ produtos.length }} produto(s) nesta categoria</p>
+    </div>
+
+    <p class="status" *ngIf="carregando">Carregando...</p>
+    <p class="status erro" *ngIf="aviso">{{ aviso }}</p>
+
+    <p class="carrinho-vazio" *ngIf="!carregando && produtos.length === 0">
+      Nenhum produto nesta categoria.
+    </p>
+
+    <div class="produtos" *ngIf="produtos.length > 0">
+      <article class="produto" *ngFor="let p of produtos">
+        <div class="produto-img">
+          <img [src]="p.imagem" [alt]="p.nome" (error)="semImagem($event)" />
+        </div>
+        <h4>{{ p.nome }}</h4>
+        <div class="produto-footer">
+          <span class="preco">R$ {{ p.preco.toFixed(2) }}</span>
+          <button type="button" class="btn-bag" (click)="adicionar(p)"
+                  [attr.aria-label]="'Adicionar ' + p.nome">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 8h12l-1 12H7L6 8Z" />
+              <path d="M9 8V6a3 3 0 0 1 6 0v2" />
+            </svg>
+          </button>
+        </div>
+      </article>
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,84 @@
+<section class="auth-page">
+  <div class="auth-box">
+
+    <h2 class="auth-titulo">Crie seu Cadastro</h2>
+
+    <form class="auth-form" (ngSubmit)="criar()">
+
+      <label class="campo">
+        <span class="campo-icone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="8" r="4" />
+            <path d="M4 21a8 8 0 0 1 16 0" />
+          </svg>
+        </span>
+        <input type="text" name="nome" [(ngModel)]="nome" placeholder="Nome completo" />
+      </label>
+
+      <label class="campo">
+        <span class="campo-icone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="5" width="18" height="14" rx="2" />
+            <circle cx="9" cy="11" r="2" />
+            <path d="M13 11h5M13 15h5" />
+          </svg>
+        </span>
+        <input type="text" name="cpf" [(ngModel)]="cpf"
+               (input)="mascararCpf()" placeholder="CPF" maxlength="14" />
+      </label>
+
+      <label class="campo">
+        <span class="campo-icone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="5" width="18" height="14" rx="2" />
+            <path d="M3 7l9 6 9-6" />
+          </svg>
+        </span>
+        <input type="email" name="email" [(ngModel)]="email" placeholder="E-mail" />
+      </label>
+
+      <label class="campo">
+        <span class="campo-icone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="10" width="16" height="10" rx="2" />
+            <path d="M8 10V7a4 4 0 0 1 8 0v3" />
+          </svg>
+        </span>
+        <input type="password" name="senha" [(ngModel)]="senha" placeholder="Senha" />
+      </label>
+
+      <fieldset class="preferencias">
+        <legend>Preferências</legend>
+        <div class="preferencias-grid">
+          <label class="check" *ngFor="let p of opcoes">
+            <input type="checkbox"
+                   [checked]="preferencias.includes(p)"
+                   (change)="alternar(p)" />
+            {{ p }}
+          </label>
+        </div>
+      </fieldset>
+
+      <p class="auth-erro" *ngIf="erro">{{ erro }}</p>
+
+      <button type="submit" class="btn-auth" [disabled]="enviando">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 5v14M5 12h14" />
+        </svg>
+        {{ enviando ? 'Criando...' : 'Criar Conta' }}
+      </button>
+
+    </form>
+
+    <div class="auth-rodape">
+      <p>Já possui conta?</p>
+      <a routerLink="/login" class="btn-auth-secundario">Fazer Login</a>
+    </div>
+
+  </div>
+</section>

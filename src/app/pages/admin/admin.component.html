@@ -1,0 +1,71 @@
+<section class="admin-page">
+  <a [routerLink]="editandoId ? '/admin-editar' : '/home'" class="voltar">
+    ← {{ editandoId ? 'Voltar para editar produtos' : 'Voltar para a home' }}
+  </a>
+
+  <div class="catalogo-card">
+
+    <div class="catalogo-head">
+      <span class="logo-mark">
+        <img src="assets/logo.png" alt="Seiva Mística" />
+      </span>
+      <h2>{{ editandoId ? 'Editar Produto' : 'Adicionar Produtos' }}</h2>
+      <div class="divider"></div>
+      <p class="admin-sub">
+        {{ editandoId ? 'Altere os dados e salve' : 'Adicione um novo produto à base de dados' }}
+      </p>
+    </div>
+
+    <form class="form-produto" (ngSubmit)="salvar()">
+
+      <div class="campo-form">
+        <span>Nome do produto</span>
+        <input type="text" name="nome" [(ngModel)]="novo.nome" maxlength="80" required />
+      </div>
+
+      <div class="form-linha">
+        <div class="campo-form">
+          <span>Categoria</span>
+          <select name="categoria" [(ngModel)]="novo.categoria">
+            <option *ngFor="let c of categorias" [value]="c">{{ c }}</option>
+          </select>
+        </div>
+
+        <div class="campo-form">
+          <span>Preço (R$)</span>
+          <input type="number" name="preco" step="0.01" min="0.01" [(ngModel)]="novo.preco" required />
+        </div>
+      </div>
+
+      <div class="form-linha">
+        <div class="campo-form">
+          <span>Estoque</span>
+          <input type="number" name="estoque" min="0" [(ngModel)]="novo.estoque" />
+        </div>
+
+        <div class="campo-form">
+          <span>Caminho da imagem</span>
+          <input type="text" name="imagem" [(ngModel)]="novo.imagem"
+                 placeholder="assets/produto.png" />
+        </div>
+      </div>
+
+      <div class="campo-form">
+        <span>Descrição</span>
+        <textarea name="descricao" rows="3" [(ngModel)]="novo.descricao"></textarea>
+      </div>
+
+      <p class="status erro" *ngIf="erro">{{ erro }}</p>
+      <p class="status" *ngIf="ok">{{ ok }}</p>
+
+      <div class="admin-acoes">
+        <a routerLink="/admin-editar" class="btn-secundario">Editar Produtos</a>
+        <button type="submit" class="btn-finalizar">
+          {{ editandoId ? 'Salvar Alterações' : 'Adicionar Produto' }}
+        </button>
+      </div>
+
+    </form>
+
+  </div>
+</section>

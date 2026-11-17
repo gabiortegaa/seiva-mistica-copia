@@ -1,0 +1,24 @@
+[1mdiff --git a/src/app/app.config.ts b/src/app/app.config.ts[m
+[1mindex 9b0d463..79b6844 100644[m
+[1m--- a/src/app/app.config.ts[m
+[1m+++ b/src/app/app.config.ts[m
+[36m@@ -1,13 +1,11 @@[m
+ import { ApplicationConfig } from '@angular/core';[m
+[31m-import { provideRouter, withInMemoryScrolling } from '@angular/router';[m
+[32m+[m[32mimport { provideRouter } from '@angular/router';[m
+[32m+[m[32mimport { provideHttpClient } from '@angular/common/http';[m
+ import { routes } from './app.routes';[m
+ [m
+[31m-[m
+ export const appConfig: ApplicationConfig = {[m
+[31m-  providers: [provideRouter([m
+[31m-    routes,[m
+[31m-    withInMemoryScrolling({[m
+[31m-      anchorScrolling: 'enabled'[m
+[31m-    })[m
+[31m-  )][m
+[32m+[m[32m  providers: [[m
+[32m+[m[32m    provideRouter(routes),[m
+[32m+[m[32m    provideHttpClient()[m
+[32m+[m[32m  ][m
+ };[m

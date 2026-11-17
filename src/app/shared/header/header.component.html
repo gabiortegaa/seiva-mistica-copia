@@ -1,17 +1,61 @@
-<nav class="navbar">
-  <div class="navbar-container">
-    @if (exibirLogo) {
-      <a class="navbar-logo" href="/">
-        <img src="assets/img-logo2.png" alt="Logo Seiva Mística">
-      </a>
-    }
+<header class="header">
+  <div class="header-inner">
 
-    <ul class="navbar-list">
-      @for (item of itensMenu; track item) {
-        <li class="navbar-item">
-          <a>{{ item.label }}</a>
-        </li>
-      }
-    </ul>
+    <a routerLink="/home" class="logo">
+      <span class="logo-mark">
+        <img src="assets/logo.png" alt="Seiva Mística" />
+      </span>
+      <span class="logo-text">
+        <strong>SEIVA MÍSTICA</strong>
+        <span>Produtos Esotéricos Naturais</span>
+      </span>
+    </a>
+
+    <button type="button"
+            class="menu-toggle"
+            (click)="menuAberto = !menuAberto"
+            [attr.aria-expanded]="menuAberto"
+            aria-label="Abrir menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="nav" [class.open]="menuAberto">
+      <a routerLink="/home" routerLinkActive="active" (click)="menuAberto = false">
+        Página Principal
+      </a>
+      <a routerLink="/sobre" routerLinkActive="active" (click)="menuAberto = false">
+        Sobre Nós
+      </a>
+      <a routerLink="/carrinho" routerLinkActive="active" (click)="menuAberto = false">
+        Carrinho
+        <span class="badge">{{ (qtd$ | async) ?? 0 }}</span>
+      </a>
+      <a routerLink="/pedidos" routerLinkActive="active" (click)="menuAberto = false">
+        Meus Pedidos
+      </a>
+
+      <ng-container *ngIf="auth.atual">
+        <a routerLink="/admin" routerLinkActive="active" (click)="menuAberto = false">
+          Administração
+        </a>
+        <a routerLink="/relatorio" routerLinkActive="active" (click)="menuAberto = false">
+          Relatório
+        </a>
+      </ng-container>
+
+      <ng-container *ngIf="auth.atual as usuario; else logar">
+        <span class="usuario-nome">{{ usuario.nome }}</span>
+        <a class="btn-sair" (click)="sair()">Sair</a>
+      </ng-container>
+
+      <ng-template #logar>
+        <a routerLink="/login" class="btn-login" (click)="menuAberto = false">
+          Login e Cadastro
+        </a>
+      </ng-template>
+    </nav>
+
   </div>
-</nav>
+</header>

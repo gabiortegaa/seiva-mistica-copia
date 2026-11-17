@@ -1,0 +1,139 @@
+{
+  "produtos": [
+    {
+      "id": 1,
+      "nome": "Ametista",
+      "categoria": "Cristais",
+      "preco": 25.00,
+      "imagem": "assets/ametista.png",
+      "descricao": "Drusa de ametista para proteção e equilíbrio energético.",
+      "estoque": 10
+    },
+    {
+      "id": 2,
+      "nome": "Pirita",
+      "categoria": "Cristais",
+      "preco": 41.00,
+      "imagem": "assets/pirita.png",
+      "descricao": "Pedra de prosperidade e energia, formato bruto.",
+      "estoque": 8
+    },
+    {
+      "id": 3,
+      "nome": "Quartzo Rosa",
+      "categoria": "Cristais",
+      "preco": 39.00,
+      "imagem": "assets/quartzo-rosa.png",
+      "descricao": "Pedra natural de quartzo rosa, aproximadamente 5 cm.",
+      "estoque": 12
+    },
+    {
+      "id": 4,
+      "nome": "Tarô Waite Clássico — Deck com 78 cartas",
+      "categoria": "Tarô e Oráculos",
+      "preco": 189.00,
+      "imagem": "assets/taro-waite.png",
+      "descricao": "78 cartas e guia de significado para todos os níveis.",
+      "estoque": 6
+    },
+    {
+      "id": 5,
+      "nome": "Baralho cigano — caixa com livro + 36 cartas",
+      "categoria": "Tarô e Oráculos",
+      "preco": 129.00,
+      "imagem": "assets/baralho-cigano.png",
+      "descricao": "Caixa com livro explicativo e 36 cartas do baralho cigano.",
+      "estoque": 9
+    },
+    {
+      "id": 6,
+      "nome": "True Love Oracle — Oráculo do Amor Verdadeiro",
+      "categoria": "Tarô e Oráculos",
+      "preco": 139.00,
+      "imagem": "assets/true-love-oracle.png",
+      "descricao": "Oráculo do amor verdadeiro, com guia de leitura.",
+      "estoque": 5
+    },
+    {
+      "id": 7,
+      "nome": "Kit 7 Banhos de Ervas 20 g — Amor, Proteção, Descarrego +",
+      "categoria": "Ervas Aromáticas e Banhos",
+      "preco": 96.00,
+      "imagem": "assets/kit-7-banhos.png",
+      "descricao": "Amor, proteção, descarrego e mais quatro banhos de ervas.",
+      "estoque": 15
+    },
+    {
+      "id": 8,
+      "nome": "Kit de Ervas Secas — 21 sacos de 210 g",
+      "categoria": "Ervas Aromáticas e Banhos",
+      "preco": 183.00,
+      "imagem": "assets/kit-ervas-secas.png",
+      "descricao": "Seleção completa de ervas secas para banhos e rituais.",
+      "estoque": 7
+    },
+    {
+      "id": 9,
+      "nome": "Kit Místico Banho da Feiticeira com Incenso Natural e Ervas Selecionadas",
+      "categoria": "Ervas Aromáticas e Banhos",
+      "preco": 93.00,
+      "imagem": "assets/kit-banho-feiticeira.png",
+      "descricao": "Banho com incenso natural e ervas selecionadas.",
+      "estoque": 11
+    }
+  ],
+
+  "categorias": [
+    {
+      "id": 1,
+      "nome": "Cristais",
+      "imagem": "assets/cristais.png",
+      "descricao": "Pedras naturais para proteção, equilíbrio e energia."
+    },
+    {
+      "id": 2,
+      "nome": "Tarô e Oráculos",
+      "imagem": "assets/taro.png",
+      "descricao": "Decks e oráculos para leitura e autoconhecimento."
+    },
+    {
+      "id": 3,
+      "nome": "Ervas Aromáticas e Banhos",
+      "imagem": "assets/ervas.png",
+      "descricao": "Ervas, banhos e incensos para rituais de limpeza."
+    }
+  ],
+
+  "pedidos": [
+    {
+      "id": 1,
+      "codigo": "PED-100001",
+      "cliente": "Alexandre Franco",
+      "itens": "2x Ametista, 1x Tarô Waite Clássico — Deck com 78 cartas",
+      "total": 239.00,
+      "data": "14/11/2026",
+      "status": "Finalizado"
+    }
+  ],
+
+  "usuarios": [
+    {
+      "id": 1,
+      "nome": "Alexandre Franco",
+      "cpf": "11144477735",
+      "email": "admin@seivamistica.com",
+      "senha": "admin123",
+      "preferencias": ["Cristais", "Tarô e Oráculos"],
+      "admin": true
+    },
+    {
+      "id": 2,
+      "nome": "Gabi Souza",
+      "cpf": "52998224725",
+      "email": "gabi@seivamistica.com",
+      "senha": "123456",
+      "preferencias": ["Ervas Aromáticas e Banhos"],
+      "admin": false
+    }
+  ]
+}

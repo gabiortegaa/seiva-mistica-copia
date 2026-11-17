@@ -1,34 +1,15 @@
-import { Component } from '@angular/core';
+﻿import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './shared/header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import { NgIf } from '@angular/common';
-import { Router, NavigationEnd } from '@angular/router';
+import { FooterComponent } from './shared/footer/footer.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, FooterComponent, NgIf],
+  imports: [RouterOutlet, HeaderComponent, FooterComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
-  mostrarHeader = true;
-
-  constructor(private router: Router) {
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        const paginasSemHeader = [
-        '/login',
-        '/cadastro',
-        '/recuperar-senha'
-      ];
-
-      this.mostrarHeader = !paginasSemHeader.includes(event.urlAfterRedirects);
-
-      }
-    });
-  }
-
+  title = 'Seiva Mistica';
 }

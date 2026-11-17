@@ -1,0 +1,51 @@
+<section class="catalogo-page">
+  <div class="catalogo-card">
+
+    <div class="catalogo-head">
+      <span class="logo-mark">
+        <img src="assets/logo.png" alt="Seiva Mística" />
+      </span>
+      <h2>Catálogo</h2>
+      <div class="divider"></div>
+      <p class="admin-sub">Todos os nossos produtos</p>
+    </div>
+
+    <p class="status" *ngIf="carregando">Carregando...</p>
+    <p class="status erro" *ngIf="aviso">{{ aviso }}</p>
+
+    <div class="faixa-categorias" *ngIf="categorias.length > 0">
+      <button type="button"
+              [class.ativo]="filtro === ''"
+              (click)="filtrar('')">Todos</button>
+      <button type="button"
+              *ngFor="let c of categorias"
+              [class.ativo]="filtro === c"
+              (click)="filtrar(c)">{{ c }}</button>
+    </div>
+
+    <p class="carrinho-vazio" *ngIf="!carregando && produtosFiltrados.length === 0">
+      Nenhum produto encontrado.
+    </p>
+
+    <div class="produtos" *ngIf="produtosFiltrados.length > 0">
+      <article class="produto" *ngFor="let p of produtosFiltrados">
+        <div class="produto-img">
+          <img [src]="p.imagem" [alt]="p.nome" (error)="semImagem($event)" />
+        </div>
+        <h4>{{ p.nome }}</h4>
+        <div class="produto-footer">
+          <span class="preco">R$ {{ p.preco.toFixed(2) }}</span>
+          <button type="button" class="btn-bag" (click)="adicionar(p)"
+                  [attr.aria-label]="'Adicionar ' + p.nome">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 8h12l-1 12H7L6 8Z" />
+              <path d="M9 8V6a3 3 0 0 1 6 0v2" />
+            </svg>
+          </button>
+        </div>
+      </article>
+    </div>
+
+  </div>
+</section>

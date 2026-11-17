@@ -1,23 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule, Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { CarrinhoService } from '../../services/carrinho.service';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, RouterModule],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  exibirLogo:boolean = true;
+  private authService = inject(AuthService);
+  private carrinhoService = inject(CarrinhoService);
+  private router = inject(Router);
 
+  menuAberto = false;
+  auth = this.authService;
+  qtd$ = this.carrinhoService.qtd$;
 
-  itensMenu = [
-    { label: 'PÁGINA PRINCIPAL', link: '/menu'},
-    { label: 'ADMNISTRAÇÃO', link: '/incluir' },
-    { label: 'SOBRE NÓS', link: '/sobre' },
-    { label: 'CARRINHO', link: '/carrinho' },
-    { label: 'LOGIN E CADASTRO', link: '/login' },
- ];
-
+  sair(): void {
+    this.menuAberto = false;
+    this.authService.sair();
+    this.router.navigate(['/home']);
+  }
 }
-1

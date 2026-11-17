@@ -1,0 +1,72 @@
+<section class="catalogo-page">
+  <a routerLink="/home" class="voltar">← Voltar para a home</a>
+
+  <div class="catalogo-card">
+
+    <div class="catalogo-head">
+      <span class="logo-mark">
+        <img src="assets/logo.png" alt="Seiva Mística" />
+      </span>
+      <h2>Meus Pedidos</h2>
+      <div class="divider"></div>
+      <p class="admin-sub">Histórico dos pedidos finalizados na sua conta</p>
+    </div>
+
+    <p class="status" *ngIf="carregando">Carregando...</p>
+    <p class="status erro" *ngIf="erro">{{ erro }}</p>
+
+    <ng-container *ngIf="!carregando && !erro">
+
+      <div class="stats" *ngIf="pedidos.length > 0">
+        <div class="stat-card">
+          <span class="stat-num">{{ totalPedidos }}</span>
+          <span class="stat-label">Pedidos realizados</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">R$ {{ valorTotal.toFixed(2) }}</span>
+          <span class="stat-label">Valor total</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">{{ pedidos[0].data }}</span>
+          <span class="stat-label">Último pedido</span>
+        </div>
+      </div>
+
+      <p class="carrinho-vazio" *ngIf="pedidos.length === 0">
+        Você ainda não finalizou nenhum pedido.
+      </p>
+
+      <div class="tabela-wrap" *ngIf="pedidos.length > 0">
+        <table class="tabela-admin">
+          <thead>
+            <tr>
+              <th>Código</th>
+              <th>Itens</th>
+              <th>Total</th>
+              <th>Data</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let p of pedidos">
+              <td><code>{{ p.codigo }}</code></td>
+              <td>{{ descricaoItens(p) }}</td>
+              <td>R$ {{ p.total.toFixed(2) }}</td>
+              <td>{{ p.data }}</td>
+              <td><span class="tag">{{ p.status }}</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </ng-container>
+
+    <div class="admin-acoes" *ngIf="!carregando">
+      <button type="button" class="btn-secundario" (click)="recarregar()">
+        Atualizar
+      </button>
+      <a routerLink="/catalogo" class="btn-finalizar">Continuar comprando</a>
+    </div>
+
+  </div>
+</section>

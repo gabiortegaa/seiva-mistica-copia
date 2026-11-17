@@ -1,25 +1,57 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule, Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, RouterModule, FormsModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  cpf: string = '';
-  senha: string = ''; //Mensagem exibida após o clique do usuário
-  botaoDesabilitado: boolean = true;
-  textoBotao: string = 'Entrar';
+  private auth = inject(AuthService);
+  private router = inject(Router);
 
-  onKeyUp(campo: 'cpf' | 'senha', event: KeyboardEvent): void {
-    const input = event.target as HTMLInputElement;
-    this[campo] = input.value.trim();
-    this.botaoDesabilitado = this.cpf.length === 0;
+  cpf = '';
+  senha = '';
+  erro = '';
+  enviando = false;
+
+  mascararCpf(evento: Event): void {
+    const alvo = evento.target as HTMLInputElement;
+    const n = alvo.value.replace(/\D/g, '').slice(0, 11);
+    this.cpf = n
+      .replace(/(\d{3})(\d)/, '$1.$2')
+      .replace(/(\d{3})(\d)/, '$1.$2')
+      .replace(/(\d{3})(\d{1,2})$/, '$1-$2');
   }
 
- onBotaoClicado(): void {
+  entrar(): void {
+    this.erro = '';
 
- }
+    if (!this.cpf.trim() || !this.senha.trim()) {
+      this.erro = 'Preencha CPF e senha.';
+      return;
+    }
+
+    this.enviando = true;
+
+    this.auth.login(this.cpf, this.senha).subscribe({
+      next: (usuario) => {
+        this.enviando = false;
+        if (!usuario) {
+          this.erro = 'CPF ou senha incorretos.';
+          return;
+        }
+        this.router.navigate(['/home']);
+      },
+      error: () => {
+        this.enviando = false;
+        this.erro = 'CPF ou senha incorretos.';
+      }
+    });
+  }
 }

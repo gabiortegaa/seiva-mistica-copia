@@ -1,0 +1,146 @@
+<section class="admin-page">
+  <a routerLink="/home" class="voltar">← Voltar para a home</a>
+
+  <div class="catalogo-card">
+
+    <div class="catalogo-head">
+      <span class="logo-mark">
+        <img src="assets/logo.png" alt="Seiva Mística" />
+      </span>
+      <h2>Relatório do Armazenamento</h2>
+      <div class="divider"></div>
+      <p class="admin-sub">Tudo o que está salvo no servidor de dados</p>
+    </div>
+
+    <p class="status" *ngIf="carregando">Carregando...</p>
+    <p class="status erro" *ngIf="erro">{{ erro }}</p>
+    <p class="status" *ngIf="ok">{{ ok }}</p>
+
+    <div class="stats">
+      <div class="stat-card">
+        <span class="stat-num">{{ totalProdutos }}</span>
+        <span class="stat-label">Produtos</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">{{ totalCategorias }}</span>
+        <span class="stat-label">Categorias</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">R$ {{ valorCatalogo.toFixed(2) }}</span>
+        <span class="stat-label">Valor em catálogo</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">{{ totalPedidos }}</span>
+        <span class="stat-label">Pedidos</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">R$ {{ receitaPedidos.toFixed(2) }}</span>
+        <span class="stat-label">Receita</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">{{ totalUsuarios }}</span>
+        <span class="stat-label">Usuários</span>
+      </div>
+    </div>
+
+    <h3 class="rel-titulo">Produtos por categoria</h3>
+    <div class="tabela-wrap">
+      <table class="tabela-admin">
+        <thead>
+          <tr>
+            <th>Categoria</th>
+            <th>Quantidade</th>
+            <th>Valor em catálogo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let c of porCategoria">
+            <td>{{ c.nome }}</td>
+            <td>{{ c.quantidade }}</td>
+            <td>R$ {{ c.valor.toFixed(2) }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="rel-titulo">Produtos cadastrados</h3>
+    <div class="tabela-wrap">
+      <table class="tabela-admin">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Categoria</th>
+            <th>Preço</th>
+            <th>Estoque</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of produtos">
+            <td><code>{{ p.id }}</code></td>
+            <td>{{ p.nome }}</td>
+            <td>{{ p.categoria }}</td>
+            <td>R$ {{ p.preco.toFixed(2) }}</td>
+            <td>{{ p.estoque }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="rel-titulo">Pedidos finalizados</h3>
+    <p class="carrinho-vazio" *ngIf="pedidos.length === 0">Nenhum pedido registrado.</p>
+    <div class="tabela-wrap" *ngIf="pedidos.length > 0">
+      <table class="tabela-admin">
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Cliente</th>
+            <th>Itens</th>
+            <th>Total</th>
+            <th>Data</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let ped of pedidos">
+            <td><code>{{ ped.codigo }}</code></td>
+            <td>{{ ped.cliente }}</td>
+            <td>{{ ped.itens }}</td>
+            <td>R$ {{ ped.total.toFixed(2) }}</td>
+            <td>{{ ped.data }}</td>
+            <td><span class="tag">{{ ped.status }}</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="rel-titulo">Usuários cadastrados</h3>
+    <p class="carrinho-vazio" *ngIf="usuarios.length === 0">Nenhum usuário registrado.</p>
+    <div class="tabela-wrap" *ngIf="usuarios.length > 0">
+      <table class="tabela-admin">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Email</th>
+            <th>Preferências</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let u of usuarios">
+            <td>{{ u.nome }}</td>
+            <td>{{ u.cpf }}</td>
+            <td>{{ u.email }}</td>
+            <td>{{ u.preferencias?.join(', ') }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="admin-acoes">
+      <button type="button" class="btn-secundario" (click)="atualizar()">Atualizar</button>
+      <button type="button" class="btn-excluir" (click)="resetar()">Resetar Dados</button>
+    </div>
+
+  </div>
+</section>

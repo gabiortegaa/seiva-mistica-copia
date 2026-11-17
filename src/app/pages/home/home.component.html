@@ -1,0 +1,34 @@
+<section class="hero">
+  <img class="hero-bg" src="assets/hero.png" alt="" />
+  <div class="hero-content">
+    <h1>SEIVA MÍSTICA</h1>
+    <p class="tagline">Encontre sua essência. Cultive boas energias.</p>
+    <p>
+      Cristais, aromas e elementos naturais para transformar seu espaço e tornar
+      seus momentos de autocuidado ainda mais especiais.
+    </p>
+    <a routerLink="/catalogo" class="btn-primary">Compre Agora</a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-inner">
+    <h2 class="section-title">Encontre o que faz sentido para você.</h2>
+    <p class="section-sub">Escolha sua categoria</p>
+
+    <p class="status" *ngIf="carregando">Carregando...</p>
+    <p class="status erro" *ngIf="aviso">{{ aviso }}</p>
+
+    <div class="categorias" *ngIf="!carregando && categorias.length > 0">
+      <a class="categoria"
+         *ngFor="let c of categorias"
+         [routerLink]="['/categoria', c.nome]">
+        <div class="categoria-img">
+          <img [src]="c.imagem" [alt]="c.nome" (error)="semImagem($event)" />
+        </div>
+        <h3>{{ c.nome }}</h3>
+        <span class="ver">{{ c.quantidade }} produtos</span>
+      </a>
+    </div>
+  </div>
+</section>
